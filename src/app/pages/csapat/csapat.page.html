@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>csapat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="meccsek$ | async as meccsek">
+    <ion-row  class="asd & dark-mode" lines="full" *ngFor="let meccs of sortt(meccsek)">
+      <ion-col  size="2">{{meccs.idopont}}</ion-col>
+      <ion-col>
+        <ion-text [class.text-bold]="meccs.egyikGol>meccs.masikGol">
+          {{meccs.egyik}}<ion-text *ngIf="meccs.egyik===csapatnev">*</ion-text>
+        </ion-text>
+        <br>
+        <ion-text [class.text-bold]="meccs.egyikGol<meccs.masikGol">
+          {{meccs.masik}}<ion-text *ngIf="meccs.masik===csapatnev">*</ion-text>
+        </ion-text>
+        </ion-col>
+      <ion-col size="2" class="ion-text-center">
+          <ion-text [class.text-bold]="meccs.egyikGol>meccs.masikGol">
+            {{meccs.egyikGol}}
+          </ion-text>
+          <br>
+          <ion-text  [class.text-bold]="meccs.egyikGol<meccs.masikGol">
+            {{meccs.masikGol}}
+          </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-title class="ion-text-center">EREDMÉNYEK</ion-title>
+  </ion-item>
+  <ion-fab *ngIf="isLoggedIn$ | async" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" (click)="napAtvalt('kedd')" >Kedd</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="napAtvalt('szerda')">Szerda</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" (click)="napAtvalt('csutortok')">Csütörtök</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="napAtvalt('pentek')">Péntek</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="napValtozo">
+    <ion-grid *ngIf="meccsek$ | async as meccsek">
+      <ion-row  class="border-bottom & dark-mode" lines="full" *ngFor="let meccs of sortt(meccsek),index as i" [class.line-odd]="i%2===0" [class.line-even]="i%2===1" >
+        <ion-col  size="2">{{meccs.idopont}}</ion-col>
+        <ion-col>
+          <ion-text  [routerLink]="['/tabella',meccs.egyik]" [class.text-bold]="parseIntt(meccs.egyikGol)>parseIntt(meccs.masikGol)">
+            {{meccs.egyik}}
+          </ion-text>
+          <br>
+          <ion-text   [routerLink]="['/tabella',meccs.masik]" [class.text-bold]="parseIntt(meccs.egyikGol)<parseIntt(meccs.masikGol)">
+            {{meccs.masik}}
+          </ion-text>
+          </ion-col>
+        <ion-col size="2" class="ion-text-center">
+            <ion-text [class.text-bold]="parseIntt(meccs.egyikGol)>parseIntt(meccs.masikGol)">
+              {{meccs.egyikGol}}
+            </ion-text>
+            <br>
+            <ion-text  [class.text-bold]="parseIntt(meccs.egyikGol)<parseIntt(meccs.masikGol)">
+              {{meccs.masikGol}}
+            </ion-text>
+        </ion-col>
+        <ion-col *ngIf="isLoggedIn$ | async">
+          <ion-fab-button  (click)="update(meccs)">
+            <ion-icon name="sync-circle-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

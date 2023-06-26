@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-title class="ion-text-center">TABELLA</ion-title>
+  </ion-item>
+  <!-- <ion-fab  *ngIf="isLoggedIn$ | async" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+  <ion-grid fixed="true" *ngIf="csapatok$ | async as csapatok">
+    <ion-row class="text-bold">
+      <ion-col>H</ion-col>
+      <ion-col size="4">Név</ion-col>
+      <ion-col>Gy</ion-col>
+      <ion-col>D</ion-col>
+      <ion-col>V</ion-col>
+      <ion-col>GK</ion-col>
+      <ion-col>P</ion-col>
+      <ion-col *ngIf="isLoggedIn$ | async">Módosít</ion-col>
+    </ion-row>
+    <ion-row class="dark-mode" *ngFor="let csapat of sortt(csapatok),index as i" [class.line-odd]="i%2===0" [class.line-even]="i%2===1" [class.border]="i===2">
+      <ion-col>{{i+1}}.</ion-col>
+      <ion-col class="ion-text-left" size="4" [routerLink]="['/tabella',csapat.nev]">{{csapat.nev}}</ion-col>
+      <ion-col>{{csapat.gy}}</ion-col>
+      <ion-col>{{csapat.d}}</ion-col>
+      <ion-col>{{csapat.v}}</ion-col>
+      <ion-col>{{csapat.rugottGol}}:{{csapat.kapottGol}}</ion-col>
+      <ion-col>{{csapat.pont}}</ion-col>
+      <ion-col *ngIf="isLoggedIn$ | async" rout>
+        <ion-fab-button  (click)="update(csapat)">
+          <ion-icon name="sync-circle-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

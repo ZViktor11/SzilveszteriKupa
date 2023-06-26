@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  [formGroup]="form" (ngSubmit)="login()">
+    <ion-item>
+      <ion-input type="email" formControlName="email" name="email" placeholder="email"></ion-input >
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" formControlName="password" name="password" placeholder="jelszo"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Bejelentkezés</button>
+  </form>
+</ion-content>

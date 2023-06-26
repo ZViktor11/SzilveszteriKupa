@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-title class="ion-text-center">GÓLLÖVŐLISTA</ion-title>
+  </ion-item>
+    <ion-fab  *ngIf="isLoggedIn$ | async" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="add()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  <ion-grid *ngIf="(jatekosok$) | async as jatekosok">
+    <ion-row class="text-bold">
+      <ion-col size="1">H</ion-col>
+      <ion-col>Név</ion-col>
+      <ion-col>Csapat</ion-col>
+      <ion-col size="3">Gólszám</ion-col>
+      <ion-col *ngIf="isLoggedIn$ | async">Módosítás</ion-col>
+    </ion-row>
+    <ion-row class="border-bottom & dark-mode"  class="dark-mode"  *ngFor="let jatekos of sortt(jatekosok),index as i" [class.line-odd]="i%2===0" [class.line-even]="i%2===1" >
+      <ion-col size="1" >{{helyezes(i,jatekosok)}}</ion-col>
+      <ion-col>{{jatekos.nev}}</ion-col>
+      <ion-col  [routerLink]="['/tabella',jatekos.csapat]">{{jatekos.csapat}}</ion-col>
+      <ion-col size="3">{{jatekos.golokSzama}}</ion-col>
+      <ion-col *ngIf="isLoggedIn$ | async">
+        <ion-fab-button  (click)="update(jatekos)">
+          <ion-icon name="sync-circle-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

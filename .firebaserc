@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "szd-tutorial": {
+      "hosting": {
+        "app": [
+          "szd-tutorial"
+        ]
+      }
+    },
+    "szilveszterikupa": {
+      "hosting": {
+        "app": [
+          "szilveszterikupa"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "szilveszterikupa"
+  }
+}

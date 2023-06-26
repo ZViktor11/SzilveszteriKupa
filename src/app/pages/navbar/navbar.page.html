@@ -1,0 +1,8 @@
+<ion-toolbar>
+  <ion-buttons>
+    <ion-button slot="start" [routerLink]="['/tabella']" [routerLinkActive]="['active']">Tabella</ion-button>
+    <ion-button slot="start" [routerLink]="['/eredmenyek']" [routerLinkActive]="['active']">Eredmények</ion-button>
+    <ion-button slot="start" [routerLink]="['/gollovolista']" [routerLinkActive]="['active']">Góllövőlista</ion-button>
+    <ion-button *ngIf="isLoggedIn$ | async" (click)="logOut()" slot="start">Kijelentkezés</ion-button>
+  </ion-buttons>
+</ion-toolbar>

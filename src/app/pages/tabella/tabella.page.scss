@@ -1,0 +1,34 @@
+ion-content{
+  text-align: center;
+}
+
+ ion-row {
+  position: relative;
+
+
+   &.line-odd {
+      background-color: rgb(204, 232, 241);
+
+  }
+
+  &.line-even {
+      background-color: white;
+    }
+
+
+  }
+
+
+
+  .border{
+    border-bottom-color: rgb(161, 27, 27);
+  border-bottom-width: 2px;
+  border-bottom-style:solid;
+  }
+
+ion-title{
+  font-weight: bold;
+}
+.text-bold{
+  font-weight: bold;
+}
